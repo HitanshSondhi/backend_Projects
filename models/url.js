@@ -1,20 +1,23 @@
-const { timeStamp } = require('console');
-const mongoose=require('mongoose');
-const { type } = require('os');
- 
-const UrlSchema=new mongoose.Schema({
-    ShortId:{
-        type:String,
-        required:true,
-        unique:true
-   },
-   redirectUrl:{
-    type:String,
-    required:true,
-   },
-   visitHistory:[{timeStamp:{type:Number}}],
-},{timestamps:true});
+const mongoose = require('mongoose');
 
-const URL=mongoose.Schema('url',UrlSchema);
+const UrlSchema = new mongoose.Schema({
+    ShortId: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    redirectUrl: {
+        type: String,
+        required: true,
+    },
+    visitHistory: [{
+        timeStamp: { 
+            type: Number 
+        }
+    }]
+}, { timestamps: true });
 
-module.exports=URL;
+// Correct model creation
+const URL = mongoose.model('Url', UrlSchema);  // Changed Schema to model
+
+module.exports = URL;
